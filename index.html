@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pedidos</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" id="logo">
+        <h1>Gestión de Pedidos</h1>
+    </header>
+    <main>
+        <section id="form-section">
+            <h2>Agregar/Editar Pedido</h2>
+            <form id="pedido-form">
+                <input type="hidden" id="row-id" name="row-id" value="">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
+                
+                <label for="nombre">Nombre y Apellido:</label>
+                <input type="text" id="nombre" name="nombre" required>
+                
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono" required>
+                
+                <label for="producto">Producto:</label>
+                <input type="text" id="producto" name="producto" required>
+                
+                <label for="codigo">Código:</label>
+                <input type="text" id="codigo" name="codigo" required>
+                
+                <label for="color">Color/Modelo:</label>
+                <input type="text" id="color" name="color" required>
+                
+                <label for="cantidad">Cantidad:</label>
+                <input type="text" id="cantidad" name="cantidad" required>
+                
+                <label for="precio">Precio Unitario:</label>
+                <input type="text" id="precio" name="precio" required>
+                
+                <label for="estado">Estado:</label>
+                <select id="estado" name="estado" required>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Pagado">Pagado</option>
+                    <option value="Enviado">Enviado</option>
+                    <option value="Entregado">Entregado</option>
+                </select>
+                
+                <button type="button" onclick="document.getElementById('pedido-form').dispatchEvent(new Event('submit'))">Guardar</button>
+                <button type="button" id="cancel-btn">Cancelar</button>
+            </form>
+        </section>
+        
+        <section id="table-section">
+            <h2>Lista de Pedidos</h2>
+            <div id="filter-section">
+                <label for="filter-fecha-desde">Desde:</label>
+                <input type="date" id="filter-fecha-desde">
+                <label for="filter-fecha-hasta">Hasta:</label>
+                <input type="date" id="filter-fecha-hasta">
+                <label for="search-nombre">Buscar por nombre:</label>
+                <input type="text" id="search-nombre" placeholder="Nombre del cliente">
+                <button id="filter-btn">Filtrar</button>
+                <button id="export-pdf-btn">Exportar a PDF</button>
+            </div>
+            <div class="table-container">
+                <table id="pedidos-table">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Nombre y Apellido</th>
+                            <th>Teléfono</th>
+                            <th>Producto</th>
+                            <th>Código</th>
+                            <th>Color/Modelo</th>
+                            <th>Cantidad</th>
+                            <th>Precio Unitario</th>
+                            <th>Total</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pedidos-tbody">
+                        <!-- Pedidos se cargarán aquí -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
